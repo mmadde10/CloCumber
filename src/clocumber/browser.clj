@@ -2,23 +2,23 @@
 (require '[environ.core :refer [env]])
 
 
+
+(defn- make-browser [test-fn, opts]
+
 (def sauce-username
   ({:env {:SAUCE-USER-NAME}}))
 
 (def sauce-access-key
   ({:env {:SAUCE-ACCESS-KEY}}))
 
-
-
-
-
-(defn- make-browser [test-fn, opts, username, access-key]
-
   (def desired-cap
     {:name: "name",
+    :username sauce-username,
+    :sauce-access-key sauce-access-key,
+    :os os,
+    :browser browser,
+    :browser-version version
     :command "{
-              \"username\" : \"SAUCE-USER-NAME\",
-              \"access-key\" : \"SAUCE-ACCESS-KEY\",
               \"os\" : \"Windows 2003\",
               \"browser\" : \"firefox\",
               \"browser-version\" : \"\"}",
